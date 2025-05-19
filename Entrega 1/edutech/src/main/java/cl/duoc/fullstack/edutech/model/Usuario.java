@@ -16,6 +16,8 @@ import jakarta.persistence.ManyToMany;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
 
+    //atributos
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
@@ -34,6 +36,8 @@ public abstract class Usuario {
     )
     private List<Curso> cursos;
 
+    //constructores
+
     public Usuario(){
         this.rut = "";
         this.nombre = "";
@@ -49,6 +53,8 @@ public abstract class Usuario {
         this.correo = correo;
         this.contrasena = contrasena;
     }
+
+    //getters and setters
 
     public int getIdUsuario() {
         return idUsuario;
@@ -98,6 +104,12 @@ public abstract class Usuario {
         this.contrasena = contrasena;
     }
 
-    
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
 
 }
