@@ -3,16 +3,16 @@ package cl.duoc.fullstack.edutech.model;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Estudiante extends Usuario {
+public class Alumno extends Usuario {
 
     private String asignatura;
 
-    public Estudiante() {
+    public Alumno() {
         this.asignatura = "";
     }
 
-    public Estudiante(String rut, String nombre, String apellido, String correo, String asignatura) {
-        super(rut, nombre, apellido, correo);
+    public Alumno(String rut, String nombre, String apellido, String correo, String contrasena, String asignatura) {
+        super(rut, nombre, apellido, correo, contrasena);
         this.asignatura = asignatura;
     }
 

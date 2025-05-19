@@ -1,11 +1,16 @@
 package cl.duoc.fullstack.edutech.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -19,19 +24,30 @@ public abstract class Usuario {
     private String nombre;
     private String apellido;
     private String correo;
+    private String contrasena;
+
+    @ManyToMany
+    @JoinTable(
+        name = "inscripcion",
+        joinColumns = @JoinColumn(name = "idUsuario"),
+        inverseJoinColumns = @JoinColumn(name = "idCurso")
+    )
+    private List<Curso> cursos;
 
     public Usuario(){
         this.rut = "";
         this.nombre = "";
         this.apellido = "";
         this.correo = "";
+        this.contrasena = "";
     }
 
-    public Usuario(String rut, String nombre, String apellido, String correo) {
+    public Usuario(String rut, String nombre, String apellido, String correo, String contrasena) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
+        this.contrasena = contrasena;
     }
 
     public int getIdUsuario() {
@@ -73,5 +89,15 @@ public abstract class Usuario {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    
 
 }

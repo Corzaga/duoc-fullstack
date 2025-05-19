@@ -6,20 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.duoc.fullstack.edutech.model.Estudiante;
-import cl.duoc.fullstack.edutech.repository.EstudianteRepository;
+import cl.duoc.fullstack.edutech.model.Alumno;
+import cl.duoc.fullstack.edutech.service.AlumnoService;
 
 @RestController
-@RequestMapping("/estudiantes")
-public class EstudianteController {
+@RequestMapping("/alumnos")
+public class AlumnoController {
 
     @Autowired
-    private EstudianteRepository estudianteRepository;
+    private AlumnoService alumnoService;
 
     @PostMapping
-    public String registrarEstudinate(@RequestBody Estudiante estudiante){
-        estudianteRepository.save(estudiante);
-        return "Estudiante guardado";
+    public String registrarAlumno(@RequestBody Alumno alumno){
+        return alumnoService.almacenar(alumno);
     }
 
 }
