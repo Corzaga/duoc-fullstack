@@ -19,6 +19,7 @@ public class Curso {
     private int idCurso;
 
     private String nombreCurso;
+    private String nombreSeccion;
     private String fechaInicio;
     private String fechaTermino;
 
@@ -44,18 +45,20 @@ public class Curso {
 
     public Curso(){
         this.nombreCurso = "";
+        this.nombreSeccion = "";
         this.fechaInicio = "";
         this.fechaTermino = "";
     }
 
-    public Curso(String nombreCurso, String fechaInicio, String fechaTermino) {
+    public Curso(String nombreCurso, String nombreSeccion, String fechaInicio, String fechaTermino) {
         this.nombreCurso = nombreCurso;
+        this.nombreSeccion = nombreSeccion;
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
     }
 
     //getters and setters
-
+    
     public int getIdCurso() {
         return idCurso;
     }
@@ -70,6 +73,14 @@ public class Curso {
 
     public void setNombreCurso(String nombreCurso) {
         this.nombreCurso = nombreCurso;
+    }
+    
+    public String getNombreSeccion() {
+        return nombreSeccion;
+    }
+
+    public void setNombreSeccion(String nombreSeccion) {
+        this.nombreSeccion = nombreSeccion;
     }
 
     public String getFechaInicio() {
