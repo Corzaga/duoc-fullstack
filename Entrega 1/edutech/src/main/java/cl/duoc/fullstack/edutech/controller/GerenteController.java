@@ -29,7 +29,7 @@ public class GerenteController {
 
     //se loguea con correo y contrasena
     @PostMapping("/login/{correo}/{contrasena}")
-    public String loguear(String correo, String contrasena){
+    public String loguear(@PathVariable String correo, @PathVariable String contrasena){
         return gerenteService.loguear(correo, contrasena);
     }
 
@@ -39,6 +39,7 @@ public class GerenteController {
         return gerenteService.listar();
     }
 
+    //se borra gerente por rut
     @DeleteMapping("/rut")
     public String eliminar(@PathVariable String rut){
         return gerenteService.eliminar(rut);

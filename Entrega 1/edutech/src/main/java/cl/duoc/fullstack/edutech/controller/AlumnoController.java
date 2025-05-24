@@ -36,7 +36,7 @@ public class AlumnoController {
 
     //se loguea el alumno
     @GetMapping("/login/{correo}/{contrasena}")
-    public String loguear(String correo, String contrasena){
+    public String loguear(@PathVariable String correo, @PathVariable String contrasena){
         return alumnoService.loguear(correo, contrasena);
     }
 

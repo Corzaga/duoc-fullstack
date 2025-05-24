@@ -33,9 +33,8 @@ public class AlumnoService {
         //si el correo del usuario existe
         if(alumnoRepository.findByCorreo(correo).isPresent()){
             Alumno alumno = alumnoRepository.findByCorreo(correo).get();
-
             //si la contrasena coincide
-            if(alumno.getContrasena() == contrasena){
+            if(alumno.getContrasena().equals(contrasena)){      //USAR EQUALS, SINO, NO FUNCIONA
                 return "Alumno logueado corectamente";
             }
             else{

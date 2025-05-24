@@ -21,22 +21,26 @@ public class InstructorController {
     @Autowired
     private InstructorService instructorService;
 
+    //se guarda el instructor
     @PostMapping
     public String almacenar(@RequestBody Instructor instructor){
         instructorService.almacenar(instructor);
         return "Instructor guardado";
     }
 
+    //se pide la lista de instructores
     @GetMapping
     public List<Instructor> listar(){
         return instructorService.listar();
     }
 
-    @GetMapping("/{correo}/{contrasena}")
-    public String loguear(String correo, String contrasena){
+    //logueo de instructor por correo y contrasena
+    @GetMapping("/login/{correo}/{contrasena}")
+    public String loguear(@PathVariable String correo, @PathVariable String contrasena){
         return instructorService.loguear(correo, contrasena);
     }
 
+    //se borra instructor por rut
     @DeleteMapping("/{rut}")
     public String eliminar(@PathVariable String rut){
         return instructorService.eliminar(rut);

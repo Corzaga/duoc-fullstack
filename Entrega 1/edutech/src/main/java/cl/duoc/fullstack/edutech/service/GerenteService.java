@@ -34,7 +34,7 @@ public class GerenteService {
             Gerente gerente = gerenteRepository.findByCorreo(correo).get();
 
             //si la contrasena coincide
-            if(gerente.getContrasena() == contrasena){
+            if(gerente.getContrasena().equals(contrasena)){
                 return "Gerente logueado corectamente";
             }
             else{

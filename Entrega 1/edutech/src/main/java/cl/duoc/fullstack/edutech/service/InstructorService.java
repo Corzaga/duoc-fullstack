@@ -33,7 +33,7 @@ public class InstructorService {
         if(instructorRepository.findByCorreo(correo).isPresent()){
             Instructor instructor = instructorRepository.findByCorreo(correo).get();
             //si el correo coincide
-            if(instructor.getContrasena() == contrasena){
+            if(instructor.getContrasena().equals(contrasena)){      //DEBE SER EQUALS
                 return "Instructor logueado correctamente";
             }
             else{
