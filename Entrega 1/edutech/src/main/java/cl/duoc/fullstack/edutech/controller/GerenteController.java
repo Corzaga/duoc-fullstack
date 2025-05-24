@@ -3,7 +3,9 @@ package cl.duoc.fullstack.edutech.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +21,27 @@ public class GerenteController {
     @Autowired
     private GerenteService gerenteService;
 
+    //se guarda el gerente
     @PostMapping
     public String almacenar(@RequestBody Gerente gerente){
         return gerenteService.almacenar(gerente);
     }
 
+    //se loguea con correo y contrasena
+    @PostMapping("/login/{correo}/{contrasena}")
+    public String loguear(String correo, String contrasena){
+        return gerenteService.loguear(correo, contrasena);
+    }
+
+    //se pide la lista de gerentes
     @GetMapping
     public List<Gerente> listar(){
         return gerenteService.listar();
+    }
+
+    @DeleteMapping("/rut")
+    public String eliminar(@PathVariable String rut){
+        return gerenteService.eliminar(rut);
     }
 
 }

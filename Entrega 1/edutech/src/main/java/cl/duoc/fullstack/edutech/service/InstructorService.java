@@ -36,6 +36,12 @@ public class InstructorService {
             if(instructor.getContrasena() == contrasena){
                 return "Instructor logueado correctamente";
             }
+            else{
+                return "Contraseña no coincide";
+            }
+        }
+        else{
+            return "Correo no está registrado";
         }
     }
 
