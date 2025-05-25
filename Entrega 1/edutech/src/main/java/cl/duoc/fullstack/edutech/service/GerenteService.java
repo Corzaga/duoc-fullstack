@@ -17,9 +17,15 @@ public class GerenteService {
 
     //guarda gerente
     public String almacenar(Gerente gerente){
-        gerenteRepository.save(gerente);
-        //no hay validacion aun
-        return "Gerente guardado correctamente";
+
+        //hay validacion aun
+        if(gerenteRepository.findByRut(gerente.getRut()).isPresent()){
+            return "El gerente ya existe";
+        }
+        else{
+            gerenteRepository.save(gerente);
+            return "Gerente guardado";
+        }
     }
 
     //retorna lista de gerentes

@@ -17,9 +17,15 @@ public class AlumnoService {
 
     //se guarda alumno
     public String almacenar(Alumno alumno){
-        alumnoRepository.save(alumno);
-        //no hay validacion
-        return "Alumno guardado correctamente";
+
+        //hay validacion
+        if(alumnoRepository.findByRut(alumno.getRut()).isPresent()){
+            return "El alumno ya existe";
+        }
+        else{
+            alumnoRepository.save(alumno);
+            return "Alumno guardado";
+        }
     }
     
     //aca deberia ser con DTO??

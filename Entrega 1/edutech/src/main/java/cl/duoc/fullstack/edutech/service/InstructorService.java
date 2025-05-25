@@ -17,8 +17,16 @@ public class InstructorService {
 
     //guarda el instructor
     public String almacenar(Instructor instructor){
-        instructorRepository.save(instructor);
-        return "Instructor guardado";
+
+        //validacion
+        if(instructorRepository.findByRut(instructor.getRut()).isPresent()){
+            return "El instructor ya existe";
+        }
+        else{
+            instructorRepository.save(instructor);
+            return "Instructor guardado";
+        }
+
     }
 
     //muestra lista de instructores
