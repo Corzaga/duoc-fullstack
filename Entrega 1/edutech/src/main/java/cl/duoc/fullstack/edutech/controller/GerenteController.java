@@ -28,7 +28,7 @@ public class GerenteController {
     }
 
     //se loguea con correo y contrasena
-    @PostMapping("/login/{correo}/{contrasena}")
+    @GetMapping("/login/{correo}/{contrasena}")
     public String loguear(@PathVariable String correo, @PathVariable String contrasena){
         return gerenteService.loguear(correo, contrasena);
     }
