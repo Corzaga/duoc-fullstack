@@ -1,0 +1,85 @@
+package cl.duoc.fullstack.edutech.service;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import cl.duoc.fullstack.edutech.model.Alumno;
+import cl.duoc.fullstack.edutech.repository.AlumnoRepository;
+
+
+//Mario A
+@Service
+public class AlumnoService {
+
+    @Autowired
+    private AlumnoRepository alumnoRepository;
+
+
+    //se guarda alumno
+    public String almacenar(Alumno alumno){
+
+        //hay validacion
+        if(alumnoRepository.findByRut(alumno.getRut()).isPresent()){
+            return "El alumno ya existe";
+        }
+        else{
+            alumnoRepository.save(alumno);
+            return "Alumno guardado";
+        }
+    }
+    
+    //aca deberia ser con DTO??
+    public List<Alumno> listar(){
+        return alumnoRepository.findAll();
+    }
+
+    //"loguea" si correo y contrasena coinciden
+    public String loguear(String correo, String contrasena){
+
+        //si el correo del usuario existe
+        if(alumnoRepository.findByCorreo(correo).isPresent()){
+            Alumno alumno = alumnoRepository.findByCorreo(correo).get();
+            //si la contrasena coincide
+            if(alumno.getContrasena().equals(contrasena)){      //USAR EQUALS, SINO, NO FUNCIONA
+                return "Alumno logueado corectamente";
+            }
+            else{
+                return "Contraseña no coincide con mail";
+            }
+        }
+        else{
+            return "El correo no esta registrado";
+        }
+    }
+    //borrar alumno por rut
+    public String eliminar(String rut){
+
+        //valida si existe el usuario con ese rut
+        if(alumnoRepository.findByRut(rut).isPresent()){
+            //lo trae
+            Alumno alumno = alumnoRepository.findByRut(rut).get();
+            //lo borra
+            alumnoRepository.delete(alumno);
+
+            return "Alumno borrado exitosamente";
+        }
+        else{
+            return "Alumno no encontrado";
+        }
+    }
+
+/* 
+    public String asignarCurso (AlumnoDTO alumnoDTO){
+        if(!alumnoRepository.findByRut(alumnoDTO.getRut()).isPresent()){
+            return "El alumno no existe";
+        } else if (!cursoRepository.findByNombreSeccion(alumnoDTO.getSeccionCurso()).isPresent()){
+            return "El alumno existe pero el curso no";
+        } else {
+
+            Alumno alumno = alumnoRepository.findByRut(alumnoDTO.getRut()).get();
+
+            return"Alumno " + alumno.getNombre() + " " + alumno.getApellido() + " se agrego correctamente al curos " + ;
+        }
+
+    }
+*/
+}
